@@ -31,23 +31,44 @@
         <script src=http://cdn.pubnub.com/pubnub.min.js ></script> 
         <script>(function(){
  
+           
      var pubnub = PUBNUB.init({
          publish_key   : 'pub-c-ac6fedde-0d4d-4e74-acdf-6f0e639b4334',
          subscribe_key : 'sub-c-47a47dbe-3da0-11e4-87bf-02ee2ddab7fe'
      })
  
      pubnub.subscribe({
-         channel : "my_channel",
-         message : function(m){ alert(m.text) },
+         channel : "aft",
+         message : function(m){ alert(m) },
          connect : publish
      })
  
+     
+      
      function publish() {
-         pubnub.publish({
-             channel : "my_channel",
+         
+       /* pubnub.publish({
+             channel : "aft",
              message : "Hi."
+         }) 
+         */
+         pubnub.publish({
+                channel : 'my_channel',
+                message: {
+                "aps" : {
+                "alert" : "You got your emails.",
+                "badge" : 9
+                },
+                "acme 1" : 42
+            }
          })
+         
      }
+    
+    
+   
+    
+    
  })();</script>
         
     </head>
